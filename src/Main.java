@@ -8,9 +8,9 @@ public class Main {
 		
 		String inputString = "abcd";
 	
-		CombinationTree tree = new CombinationTree(inputString.toCharArray(),4);
+		CombinationTree tree = new CombinationTree(inputString.toCharArray(),3);
 		
-		System.out.println("done");
+		System.out.println(tree.depthFirstTraversal());
 		
 	}
 

@@ -64,6 +64,14 @@ public class Node {
 		return "Node: " + key;
 		
 	}
+
+	public boolean hasChildren() {
+		return !this.children.isEmpty();
+	}
+	
+	public boolean hasParant() {
+		return parent != null;
+	}
 	
 	
 }
