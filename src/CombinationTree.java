@@ -20,18 +20,24 @@ public class CombinationTree<T> {
 	
 	public Node populateTree(char[] array, Node parent, int maxDepth) {
 		Arrays.sort(array);
-		
-		for(int j = 0;j<array.length-1;j++) {
-			char current = array[j];
-			
+		if (maxDepth == 1) {
 			ArrayList<Node> elements = new ArrayList<Node>();
-			Node currentNode = new Node(current,root);
-			for(int i=j+1;i<array.length-1;i+=(maxDepth-1)) {
-				elements.add(populateTree(Arrays.copyOfRange(array, i, array.length),currentNode,maxDepth-1));
-				//elements.add(new Node(array[i],parent));
+			for(char el : array)
+				elements.add(new Node(el,parent,new ArrayList<>()));
+			parent.setChildren(elements);
+		}
+		else {
+			
+			for(int j = 1;j<array.length;j++) {
+				char current = array[j-1];
+				ArrayList<Node> elements = new ArrayList<Node>();
+				Node currentNode = new Node(current,root);
+				if(array.length -j < maxDepth-1 ) {
+					break;
+				}
+				elements.add(populateTree(Arrays.copyOfRange(array, j, array.length),currentNode,maxDepth-1));
+				parent.addChild(currentNode);
 			}
-			currentNode.setChildren(elements);
-			parent.addChild(currentNode);
 		}
 		return parent;
 	}
